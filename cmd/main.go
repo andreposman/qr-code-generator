@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/andreposman/qr-code-generator"
+	qrcode "github.com/andreposman/qr-code-generator"
 )
 
 func main() {
@@ -11,7 +11,7 @@ func main() {
 	fileName := "qrcode.png"
 
 	QRCode := qrcode.Generate("123-456")
-	qr.SaveQRCode(fileName, QRCode)
+	qrcode.SaveQRCode(fileName, QRCode)
 }
 
 func greeting() {
