@@ -3,17 +3,21 @@ package main
 import (
 	"fmt"
 
-	qrcode "github.com/andreposman/qr-code-generator/cmd/service"
+	"github.com/andreposman/qr-code-generator/cmd/helpers"
+	"github.com/andreposman/qr-code-generator/cmd/qrcode/controller"
 )
 
 func main() {
 	greeting()
-	fileName := "qrcode.png"
 
-	QRCode := qrcode.Generate("123-456")
-	qrcode.Save(fileName, QRCode)
+	data := helpers.GenerateRandomData(16)
+
+	fmt.Println(data)
+
+	qrCode := controller.Generate(data)
+	controller.Save(qrCode)
 }
 
 func greeting() {
-	fmt.Println("\n QR CODE GENERATOR\n-------------------\n")
+	fmt.Println("\n QR CODE GENERATOR\n-------------------")
 }
