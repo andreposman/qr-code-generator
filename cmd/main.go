@@ -3,19 +3,15 @@ package main
 import (
 	"fmt"
 
-	"github.com/andreposman/qr-code-generator/cmd/helpers"
-	"github.com/andreposman/qr-code-generator/cmd/qrcode/controller"
+	"github.com/andreposman/qr-code-generator/internal/helpers/mock"
+	"github.com/andreposman/qr-code-generator/internal/qrcode/controller"
 )
 
 func main() {
 	greeting()
 
-	data := helpers.GenerateRandomData(16)
-
-	fmt.Println(data)
-
-	qrCode := controller.Generate(data)
-	controller.Save(qrCode)
+	QRCodeData := mock.MockParamForQRCodeGen()
+	controller.CreateQRCode(QRCodeData)
 }
 
 func greeting() {
