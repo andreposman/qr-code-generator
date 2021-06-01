@@ -40,8 +40,9 @@ func InitAPI(s *Server) {
 		} else {
 			stringImage, _ := service.EncodeQRCodeString(JSONReq.FileName)
 			c.JSON(http.StatusOK, gin.H{
+				"online-decoder": "https://www.base64decode.net/base64-image-decoder",
 				"image":          stringImage,
-				"online-decoder": "https://www.base64decode.net/base64-image-decoder"})
+			})
 
 		}
 
