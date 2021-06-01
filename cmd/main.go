@@ -3,15 +3,21 @@ package main
 import (
 	"fmt"
 
-	"github.com/andreposman/qr-code-generator/internal/helpers/mock"
-	"github.com/andreposman/qr-code-generator/internal/qrcode/controller"
+	"github.com/andreposman/qr-code-generator/internal/api"
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	greeting()
+	router := gin.Default()
+	r := api.NewServer(router)
 
-	QRCodeData := mock.MockParamForQRCodeGen()
-	controller.CreateQRCode(QRCodeData)
+	// service.ConvertQRCodeString()
+
+	api.InitAPI(r)
+
+	// QRCodeData := mock.MockParamForQRCodeGen()
+	// controller.CreateQRCode(QRCodeData)
 }
 
 func greeting() {

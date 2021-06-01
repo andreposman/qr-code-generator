@@ -1,9 +1,13 @@
 package service
 
 import (
+	"bufio"
+	"encoding/base64"
 	"errors"
 	"fmt"
 	"image/png"
+	"io/ioutil"
+	"log"
 	"os"
 
 	"github.com/boombuler/barcode"
@@ -54,4 +58,18 @@ func encodeToPNG(file *os.File, qrCode barcode.Barcode) (bool, error) {
 	} else {
 		return true, nil
 	}
+}
+
+func EncodeQRCodeString(fileName string) (string, error) {
+	file, err := os.Open(fileName + ".png")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+
+	reader := bufio.NewReader(file)
+	content, _ := ioutil.ReadAll(reader)
+	encodeContent := base64.StdEncoding.EncodeToString(content)
+
+	return encodeContent, nil
 }
